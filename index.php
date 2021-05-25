@@ -1,9 +1,16 @@
 <?php
 //this line makes PHP behave in a more strict way
-declare(strict_types=1);
+declare(strict_types = 1 );
+
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
 
 //we are going to use session variables so we need to enable sessions
 session_start();
+
+
+
 
 function whatIsHappening() {
     echo '<h2>$_GET</h2>';
@@ -32,6 +39,15 @@ $products = [
     ['name' => 'Ice-tea', 'price' => 3],
 ];
 
+function calculateTotalValue($products, $cart, $totalValue)
+{
+    foreach ($cart as $key) {
+        $totalValue += $products[$key]['price'];
+    }
+    return $totalValue;
+}
+
 $totalValue = 0;
 
+require 'form-validation.php';
 require 'form-view.php';
