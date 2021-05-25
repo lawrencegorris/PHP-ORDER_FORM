@@ -1,24 +1,32 @@
 <?php
+
+$errors = [];
+$listErrors = "";
+$orderConfirmed = "";
 $email = $street = $streetNumber = $city = $zipcode = $success = '';
 $emailError = $streetError = $streetNumberError = $cityError = $zipcodeError = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
+
     if(empty($_POST['email'])){
-        $emailError = 'Please enter your e-mail address';
-    }else {
+        array_push($errors, 'email');
+        $emailError = 'Please enter your mail.';
+    } else {
         $email = validate_data($_POST['email']);
         if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-            $emailError = 'Please use a valid e-mail format!';
+            $emailError = 'Plese enter a valid email adress';
         }
     }
 
     if(empty($_POST['street'])){
-        $streetError = 'Required';
+        array_push($errors, ['streetError' => 'Required']);
+        $streetError  = 'Required';
     }else {
         $street = validate_data($_POST['street']);
     }
 
     if(empty($_POST['streetnumber'])){
+        array_push($errors, 'streetnumber');
         $streetNumberError = 'Required';
     }else {
         $streetNumber = validate_data($_POST['streetnumber']);
@@ -36,6 +44,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $zipcode = validate_data($_POST['zipcode']);
     }
 
+    if(empty($errors)){
+        $orderConfirmed = 'Your order has succesfully been submitted';
+    }
 }
 
 function validate_data($data){

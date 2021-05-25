@@ -23,7 +23,7 @@
             </li>
         </ul>
     </nav>
-    <p><?php echo $success ?></p>
+
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">
         <div class="form-row">
             <div class="form-group col-md-6">
@@ -52,24 +52,24 @@
                 <div class="form-group col-md-6">
                     <label for="city">City:</label>
                     <input type="text" id="city" name="city" class="form-control" value="<?php echo $city ?>">
-                    <spahp echo $cityError ?></span>
+                    <span class="error"><?php echo $cityError ?></span>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="zipcode">Zipcode</label>
-                    <input type="number" id="zipcode" name="zipcode" class="form-control" value="<?php echo $streetNumber ?>" pattern="[0-9]+">
+                    <input type="number" id="zipcode" name="zipcode" class="form-control" value="<?php echo $zipcode ?>" pattern="[0-9]+">
                     <span class="error"><?php echo $zipcodeError ?></span>
                 </div>
             </div>
         </fieldset>
 
         <fieldset>
-            <legend>Products</legend>
-            <?php foreach ($products as $i => $product): ?>
-                <label>
-                    <input type="checkbox" value="0" name="products[<?php echo $i ?>]"/> <?php echo $product['name'] ?>
-                    -
-                    &euro; <?php echo number_format($product['price'], 2) ?></label><br/>
-            <?php endforeach; ?>
+        <legend>Products</legend>
+                <?php foreach ($products as $i => $product) : ?>
+                    <label>
+                        <input type="checkbox" value="1" name="products[<?php echo $i ?>]" /> <?php echo $product['name'] ?> -
+                        &euro; <?php echo number_format($product['price'], 2) ?>
+                    </label><br/>
+                <?php endforeach; ?>
         </fieldset>
 
         <label>
@@ -79,6 +79,13 @@
 
         <button type="submit" class="btn btn-primary">Order!</button>
     </form>
+
+
+    <p class="order-confirmation">
+        <?php 
+            echo $orderConfirmed;
+        ?>
+    </p>
 
     <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in food and drinks.</footer>
 </div>

@@ -1,3 +1,10 @@
 .error {
     color: #FF0000;
 }
+
+.order-confirmation{
+    margin-top: 25px;
+    text-align: center;
+    font-size: 25px;
+    background-color: rgb(144, 194, 144);
+}
