@@ -11,3 +11,4 @@ Customer can order various items. After purchase, both the owner and customer wi
 - Total revenue counter
 - (Send email)
 ## Doubts, thoughts and thingies:
+- Stuck at this exercise; 
